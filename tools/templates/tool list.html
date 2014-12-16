@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tools for developers</title>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="tools in python for developers, programmers, db admins. It will also allow you to get a picture with text centered">
+    <meta name="keywords"
+          content="tools, python, sql, ms sql, user defined functions, stored procedures, triggers,
+
+        HUD Tenant, certification, re-certification, new admission,
+		annual re-examination, interim, HUD, tenant, TTP, tenant rent, public housing, ph, s8, section 8, voucher, mtw, wtw,
+		income limits, fair market rent, Housing Authorities, pha partner, visual homes, tenmast, happy software, lindsey, phaweb, yardi,
+              self developtment, seve habits, stephen covey, steven covey, The Richest Man in babylon, George Clason,
+		MLM, multilevel, network marketing,
+
+		apps, android, ios, iphone, ipad, ipod
+	">
+
+    <style>
+        .button {
+            font: 18px Futura, 'Century Gothic', AppleGothic, Arial, sans-serif;
+            background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#F9F9F9), to(#E3E3E3));
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin: 0 8px 0 0;
+            color: black;
+            padding: 4px 8px 3px;
+            outline: none;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            cursor: pointer;
+	     text-decoration:none;
+        }
+
+        .button:hover,
+        input[type='submit']:hover {
+            border: 1px solid #939393;
+        }
+
+        h1{
+            text-align: center;
+            margin-top: 10px;
+        }
+        table{
+            text-align: center;
+        }
+
+        .func{
+            width: 10%;
+        }
+
+        .author{
+            width: 10%;
+        }
+
+        .category{
+            width: 10%;
+        }
+
+        .pub{
+            width: 10%;
+        }
+
+        #login_div{
+            float: right;
+            text-align: right;
+            margin-right: 15px;
+	        margin-top: -20px;
+        }
+
+        #center-image{
+            float: right;
+            text-align: right;
+            margin-right: 10px;
+            margin-top: 15px;
+            display: inline;
+            clear: both;
+
+        }
+
+
+        table {
+            border-collapse: collapse;
+            border-color: #ccc;
+            margin-left: 15%;
+            width: 70%;
+        }
+
+        td, th {
+            font-size: 11px;
+            line-height: 13px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            padding: 5px;
+            font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+            border-right: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+        }
+
+        th {
+            text-align: left;
+            font-size: 12px;
+            font-weight: bold;
+
+        }
+
+        thead th,
+        tfoot td {
+            color: #666;
+            padding: 2px 5px;
+            font-size: 11px;
+            background: #e1e1e1 url(/static/img/nav-bg.gif) top left repeat-x;
+            border-left: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+        tr.alt {
+            background: #f6f6f6;
+        }
+
+        .row1 {
+            background: #EDF3FE;
+        }
+
+        .row2 {
+            background: white;
+        }
+
+            /* SORTABLE TABLES */
+
+        thead th a:link, thead th a:visited {
+            color: #666;
+            display: block;
+        }
+
+        thead th.sorted {
+            background: #c5c5c5 url(/static/img/nav-bg-selected.gif) top left repeat-x;
+        }
+
+        table thead th.sorted a {
+            padding-right: 13px;
+        }
+
+        table thead th.ascending a {
+            background: url(/static/img/arrow-up.gif) right .4em no-repeat;
+        }
+
+        table thead th.descending a {
+            background: url(/static/img/arrow-down.gif) right .4em no-repeat;
+        }
+
+        table thead th.sorted a span.text {
+            display: block;
+            float: left;
+            cursor: pointer; /* IE needs this */
+        }
+
+        table thead th.sorted a span.sortpos {
+            display: block;
+            float: right;
+            font-size: .6em;
+            text-align: right;
+            cursor: pointer; /* IE needs this */
+        }
+
+        table thead th.sorted a img {
+            vertical-align: top;
+        }
+
+        table thead th.sorted a span.clear {
+            display: block;
+            clear: both;
+        }
+
+
+            /* ORDERABLE TABLES */
+
+        table.orderable tbody tr td:hover {
+            cursor: move;
+        }
+
+        table.orderable tbody tr td:first-child {
+            padding-left: 14px;
+            background-image: url(/static/img/nav-bg-grabber.gif);
+            background-repeat: repeat-y;
+        }
+
+        table.orderable-initalized .order-cell, body>tr>td.order-cell {
+            display: none;
+        }
+
+
+            /* MODULES */
+
+        .module {
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            background: white;
+        }
+
+        .module p, .module ul, .module h3, .module h4, .module dl, .module pre {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .module blockquote {
+            margin-left: 12px;
+        }
+
+        .module ul, .module ol {
+            margin-left: 1.5em;
+        }
+
+        .module h3 {
+            margin-top: .6em;
+        }
+
+        caption{
+            margin: 0;
+            padding: 2px 5px 3px 5px;
+            font-size: 115%;
+            text-align: left;
+            font-weight: bold;
+            background: #7CA0C7 url(/static/admin/img/default-bg.gif) top left repeat-x;
+            color: white;
+        }
+
+        thead th,
+        tfoot td {
+            color: #666;
+            padding: 2px 5px;
+            font-size: 11px;
+            background: #e1e1e1 url(/static/admin/img/nav-bg.gif) top left repeat-x;
+            border-left: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tfoot td {
+            border-bottom: none;
+            border-top: 1px solid #ddd;
+        }
+
+        thead th:first-child,
+        tfoot td:first-child {
+            border-left: none !important;
+        }
+
+        thead th.optional {
+            font-weight: normal !important;
+        }
+
+        .module table {
+            border-collapse: collapse;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+
+	#back{
+            display: inline;
+            float: left;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+	.google{
+            margin-left: 20%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+	<a href="http://www.jedutils.com" class="button" id="back">Back to JED Utils</a>
+    <h1>Tools for developers</h1>
+    <ul>
+    <div id="login_div">
+        <a href="mailto:edilio73@gmail.com" class="button">Contact Us</a>
+        <a href="/admin/" class="button">Login</a>
+    </div>
+
+    <div id="center-image">
+        <a href="{% url center-text-image %}" class="button">Center Text in Image</a>
+    </div>
+
+    <table>
+
+	 <caption>Tools</caption>
+        <tbody>
+        <thead>
+            <tr>
+                <th class="func">
+                    Function Name
+                </th>
+                <th class="category">
+                    Category
+                </th>
+                <th class="pub">
+                    Publication Date
+                </th>
+                <th class="author">
+                    Author
+                </th>
+            </tr>
+        </thead>
+
+    {%  for tool in tools %}
+        <tr>
+            <td class="func">
+                <a href="{% url run_tool tool.id %}">{{ tool.function_name }}</a>
+            </td>
+            <td class="category">
+                <a href="{% url run_tool tool.id %}">{{ tool.category }}</a>
+            </td>
+            <td class="pub">
+                <a href="{% url run_tool tool.id %}">{{ tool.pub_date }}</a>
+            </td>
+            <td class="author">
+                <a href="{% url run_tool tool.id %}">{{ tool.author }}</a>
+            </td>
+        </tr>
+    {% endfor %}
+	</tbody>
+
+    </table>
+
+    <br/>
+   
+</body>
+</html>

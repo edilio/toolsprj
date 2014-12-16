@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Run Tool </title>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="tools in python for developers, programmers, db admins">
+    <meta name="keywords"
+          content="tools, python, sql, ms sql, user defined functions, stored procedures, triggers,
+
+        HUD Tenant, certification, re-certification, new admission,
+		annual re-examination, interim, HUD, tenant, TTP, tenant rent, public housing, ph, s8, section 8, voucher, mtw, wtw,
+		income limits, fair market rent, Housing Authorities, pha partner, visual homes, tenmast, happy software, lindsey, phaweb, yardi,
+              self developtment, seven habits, stephen covey, steven covey, The Richest Man in babylon, George Clason,
+		MLM, multilevel, network marketing,
+
+		apps, android, ios, iphone, ipad, ipod
+	">
+
+    <style>
+        .button, input[type='submit'] {
+            font: 18px Futura, 'Century Gothic', AppleGothic, Arial, sans-serif;
+            background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#F9F9F9), to(#E3E3E3));
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin: 0 8px 0 0;
+            color: black;
+            padding: 4px 8px 3px;
+            outline: none;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            cursor: pointer;
+        }
+
+        .button:hover,
+        input[type='submit']:hover {
+            border: 1px solid #939393;
+        }
+
+
+        .button:active,
+        input[type='submit']:active {
+            background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#E3E3E3), to(#F9F9F9));
+        }
+        input[type='text'], input[type='number'], textarea {
+            font-size: 105%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            -webkit-box-shadow: 0 3px 10px #ccc inset;
+            outline: none;
+        }
+        input[type="file"].hidden-input {
+            /* display:none on the input won't trigger the click event in WebKit.
+               Setting visibility to hidden and width 0 works.*/
+            visibility: hidden;
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+
+        .righted{
+            float: right;
+            margin-right: 20px;
+            width: 50%;
+        }
+
+        #backBtn{
+            float: right;
+            margin-right: 20px;
+
+        }
+
+        #info h4{
+            font-size: 16px;
+            font-weight:bold;
+            color: #036dbe;
+            -webkit-margin-before: 0.5em;
+            -webkit-margin-after: 0.5em;
+        }
+
+        #info {
+
+        }
+
+        .lefty{
+            float: left;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+   <h1>Run tool {{ tool.function_name }}</h1>
+   <a href="{% url tools_home %}" id="backBtn" class="button">Back</a>
+
+   <div class="righted">
+       <h4>Description</h4>
+       {{ tool.description|linebreaks }}
+   </div>
+   <div id="info">
+       <h4>Category: {{ tool.category }}</h4>
+       <h4>Author: {{ tool.author }}</h4>
+
+   </div>
+
+    <div class="lefty">
+   Please, enter params:<br/>
+   <form action="{%  url run_tool tool.id %}" method="POST">
+       {% csrf_token %}
+       {% for p in params %}
+           <label for="id=id_{{ p.name }}">{{ p.name }}
+           {% if p.parameter_type == 0 %}
+                <input type="text" id="id_{{ p.name }}" name="{{ p.name }}" value="{{ p.value }}"/><br/>
+           {% else %}
+               <textarea id="id_{{ p.name }}" tabindex="0" wrap="SOFT" name="{{ p.name }}" ROWS="30" COLS="130">{{ p.value }}</textarea>
+           {% endif %}
+           </label>
+       {%  endfor %}
+        <input type="submit" value="Run Tool"/>
+   </form>
+   <div>
+       <h4>Result</h4>
+       <textarea id="id_result" tabindex="0" wrap="SOFT" rows="80" cols="80" name="code" class="vLargeTextField" >{{ result }}</textarea>
+
+
+   </div>
+
+</div>
+</body>
+</html>

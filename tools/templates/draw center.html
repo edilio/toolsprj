@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Draw a text in center</title>
+    <link href="http://www.jedutils.com/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://pygments.org/media/pygments_style.css" rel="stylesheet" type="text/css" />
+    <style>
+        h1{
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .another{
+            float:right;
+            margin-right: 30%;
+            margin-top: -15%;
+        }
+
+        .text-center{
+            text-align: center;
+            clear: both;
+        }
+        .left{
+            margin-left: 30%;
+        }
+
+        button{
+            margin-top: 10px;
+            margin-left: 45%;
+        }
+
+        .google{
+            margin-left: 20%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .code-ex{
+            margin-left:15%;
+            margin-right:15%;
+        }
+
+        #back{
+            display: inline;
+            float: left;
+            margin-left: 20px;
+            margin-top: 10px;
+
+        }
+    </style>
+
+</head>
+<body>
+    <a href="http://tools.jedutils.com" class="btn" id="back">Back</a>
+    <form id="form" >{% csrf_token %}
+    <h1>Draw a text in center of an Image</h1>
+      <div class="text-center">
+        <label for="text">Text to put on the center of your image</label>
+        <input type="text" name='text' id="text"/>
+      </div>
+
+      <div class="left">
+          <label for="font">Select Font</label>
+          <select id="font" name="font">
+              {%  for font in fonts %}
+                  {%  if font.name == "bookosbi" %}
+                    <option value="{{ font.value }}" selected="selected">{{ font.name }}</option>
+                  {%  else %}
+                      <option value="{{ font.value }}">{{ font.name }}</option>
+                  {% endif %}
+              {% endfor %}
+          </select>
+            <label for="font-size">Font Size</label>
+            <input type="number" name='fontSize' id="font-size" value="16"/>
+            <label for="font-color">Font Color</label>
+            <input type="color" name='fontColor' id="font-color" value="#949494"/>
+
+      </div>
+        <br style="clear:both;"/>
+
+    <div class="another">
+
+          <label for="width">Image Width</label>
+          <input type="number" name='width' id="width" value="200"/>
+
+          <label for="height">Image Height</label>
+          <input type="number" name='height' id="height" value="200"/>
+
+          <label for="back-color">Background Color</label>
+          <input type="color" name='backColor' id="back-color" value="#ebebeb"/>
+
+      </div>
+
+        <div class="text-center">
+           <label for="filter">Select Filter</label>
+           <select id="filter" name="filter">
+               <option>BLUR</option>
+               <option>CONTOUR</option>
+               <option selected="selected">DETAIL</option>
+               <option>EDGE_ENHANCE</option>
+               <option>EDGE_ENHANCE_MORE</option>
+               <option>EMBOSS</option>
+               <option>FIND_EDGES</option>
+               <option>SMOOTH</option>
+               <option>SMOOTH_MORE</option>
+               <option>SHARPEN</option>
+           </select>
+       </div>
+        <div class="text-center">
+            <label for="imgType">Select Image Type</label>
+            <select id="imgType" name="img_type">
+                <option selected="selected">JPEG</option>
+                <option>PNG</option>
+            </select>
+        </div>
+
+        <button class="btn" id="create-image-btn">Create Image</button>
+
+    </form>
+
+
+    <div class="google">
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-3343684011388928";
+        /* Second Test */
+        google_ad_slot = "6328276688";
+        google_ad_width = 728;
+        google_ad_height = 90;
+        //-->
+        </script>
+        <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+    </div>
+
+    <div class="text-center" id="image_div"  style="display: none">
+        <strong>Result : </strong><img id="image"/>
+    </div>
+    <div class="code-ex">
+        <p>
+            Press Create Image if you want to create an image with the text you wrote in the center of it. Please, fill you parameters according to your preferences.
+        </p>
+        <p>
+           The code for center the text inside the image have been written in python using PIL library. The code is:
+
+        </p>
+        <p>
+        <div class="hlcode">
+            <div class="syntax"><pre><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">ImageFont</span><span class="p">,</span> <span class="n">ImageFilter</span>
+
+
+<span class="n">filter_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;BLUR&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">BLUR</span><span class="p">,</span>
+    <span class="s">&#39;CONTOUR&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">CONTOUR</span><span class="p">,</span>
+    <span class="s">&#39;DETAIL&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">DETAIL</span><span class="p">,</span>
+    <span class="s">&#39;EDGE_ENHANCE&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">EDGE_ENHANCE</span><span class="p">,</span>
+    <span class="s">&#39;EDGE_ENHANCE_MORE&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">EDGE_ENHANCE_MORE</span><span class="p">,</span>
+    <span class="s">&#39;EMBOSS&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">EMBOSS</span><span class="p">,</span>
+    <span class="s">&#39;FIND_EDGES&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">FIND_EDGES</span><span class="p">,</span>
+    <span class="s">&#39;SMOOTH&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">SMOOTH</span><span class="p">,</span>
+    <span class="s">&#39;SMOOTH_MORE&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">SMOOTH_MORE</span><span class="p">,</span>
+    <span class="s">&#39;SHARPEN&#39;</span> <span class="p">:</span> <span class="n">ImageFilter</span><span class="o">.</span><span class="n">SHARPEN</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">create_image</span><span class="p">(</span><span class="n">font_name</span><span class="p">,</span> <span class="n">font_size</span><span class="p">,</span> <span class="n">font_color</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">back_ground_color</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">image_filter</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+    <span class="n">font</span>  <span class="o">=</span>  <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span> <span class="p">(</span> <span class="n">font_path</span> <span class="o">+</span> <span class="n">font_name</span> <span class="o">+</span> <span class="s">&quot;.ttf&quot;</span><span class="p">,</span> <span class="n">font_size</span> <span class="p">)</span>
+
+    <span class="n">im</span>  <span class="o">=</span>  <span class="n">Image</span><span class="o">.</span><span class="n">new</span> <span class="p">(</span> <span class="s">&quot;RGB&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="n">height</span><span class="p">),</span> <span class="n">back_ground_color</span> <span class="p">)</span>
+    <span class="n">draw</span>  <span class="o">=</span>  <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span> <span class="p">(</span> <span class="n">im</span> <span class="p">)</span>
+    <span class="n">text_x</span><span class="p">,</span> <span class="n">text_y</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">text_x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">text_y</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">text</span> <span class="p">(</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">text</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">font_color</span> <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
+        <span class="n">real_filter</span> <span class="o">=</span> <span class="n">filter_dict</span><span class="p">[</span><span class="n">image_filter</span><span class="p">]</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">real_filter</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">save</span> <span class="p">(</span> <span class="s">&quot;runaway_emboss.jpg&quot;</span> <span class="p">)</span>
+
+
+</pre></div>
+
+        </div>
+
+
+        </p>
+    </div>
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script>
+        $.getValues = function (form){
+            var
+                    newdata = {},
+                    data = $('#form').serializeArray();
+
+            for (var i=0; i < data.length; i += 1) {
+                newdata[data[i].name] = data[i].value;
+            }
+            return newdata;
+        };
+
+        $(document).ready(function() {
+            function callback(data){
+                 console.log(data.image.length);
+                var
+                  imageEl = $('#image');
+
+                imageEl.attr('src', "data:image/jpeg;base64," + data.image);
+                $('#image_div').attr('style', 'display: block');
+            }
+
+            $('#create-image-btn').click(function(event){
+                    var postData = $.getValues('form');
+                    event.preventDefault();
+                    $.post('{% url create-image %}', postData, callback);
+                }
+            );
+        });
+    </script>
+</body>
+</html>
