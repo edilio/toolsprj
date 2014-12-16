@@ -31,7 +31,7 @@
             vertical-align: middle;
             -webkit-user-select: none;
             cursor: pointer;
-	     text-decoration:none;
+	        text-decoration:none;
         }
 
         .button:hover,
@@ -285,7 +285,7 @@
     </div>
 
     <div id="center-image">
-        <a href="{% url center-text-image %}" class="button">Center Text in Image</a>
+        <a href="{% url 'center-text-image' %}" class="button">Center Text in Image</a>
     </div>
 
     <table>
@@ -312,16 +312,16 @@
     {%  for tool in tools %}
         <tr>
             <td class="func">
-                <a href="{% url run_tool tool.id %}">{{ tool.function_name }}</a>
+                <a href="{% url 'run_tool' tool.id %}">{{ tool.function_name }}</a>
             </td>
             <td class="category">
-                <a href="{% url run_tool tool.id %}">{{ tool.category }}</a>
+                <a href="{% url 'run_tool' tool.id %}">{{ tool.category }}</a>
             </td>
             <td class="pub">
-                <a href="{% url run_tool tool.id %}">{{ tool.pub_date }}</a>
+                <a href="{% url 'run_tool' tool.id %}">{{ tool.pub_date }}</a>
             </td>
             <td class="author">
-                <a href="{% url run_tool tool.id %}">{{ tool.author }}</a>
+                <a href="{% url 'run_tool' tool.id %}">{{ tool.author }}</a>
             </td>
         </tr>
     {% endfor %}

@@ -88,11 +88,28 @@
             float: left;
             width: 50%;
         }
+
+
+        .button {
+            font: 18px Futura, 'Century Gothic', AppleGothic, Arial, sans-serif;
+            background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#F9F9F9), to(#E3E3E3));
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin: 0 8px 0 0;
+            color: black;
+            padding: 4px 8px 3px;
+            outline: none;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            cursor: pointer;
+	        text-decoration:none;
+        }
     </style>
 </head>
 <body>
    <h1>Run tool {{ tool.function_name }}</h1>
-   <a href="{% url tools_home %}" id="backBtn" class="button">Back</a>
+   <a href="{% url 'tools_home' %}" id="backBtn" class="button">Back</a>
 
    <div class="righted">
        <h4>Description</h4>
@@ -106,7 +123,7 @@
 
     <div class="lefty">
    Please, enter params:<br/>
-   <form action="{%  url run_tool tool.id %}" method="POST">
+   <form action="{%  url 'run_tool' tool.id %}" method="POST">
        {% csrf_token %}
        {% for p in params %}
            <label for="id=id_{{ p.name }}">{{ p.name }}

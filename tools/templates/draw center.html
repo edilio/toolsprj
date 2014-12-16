@@ -214,7 +214,7 @@
             $('#create-image-btn').click(function(event){
                     var postData = $.getValues('form');
                     event.preventDefault();
-                    $.post('{% url create-image %}', postData, callback);
+                    $.post('{% url 'create-image' %}', postData, callback);
                 }
             );
         });

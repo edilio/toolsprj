@@ -2,12 +2,17 @@ __author__ = 'Edilio'
 
 import os
 
+
 def get_font_path():
     windows_font = "C:/Windows/Fonts/"
     linux_font = "/usr/share/fonts/truetype/"
+    mac = "/Library/Fonts"
 
-    font_path = windows_font if os.name == 'nt' else linux_font
-    return font_path
+    path = windows_font if os.name == 'nt' else linux_font
+    if os.path.isdir(path):
+        return path
+    else:
+        return mac
 
 font_path = get_font_path()
 print font_path

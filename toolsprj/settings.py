@@ -2,8 +2,6 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-#if BASE_DIR.find('toolsprj') == -1:
-#    BASE_DIR = os.path.join(BASE_DIR, '../')
 print BASE_DIR
 
 try:

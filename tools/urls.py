@@ -1,6 +1,4 @@
-__author__ = 'edilio'
-
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from tools import views
 
 urlpatterns = patterns('',
