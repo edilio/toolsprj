@@ -14,4 +14,5 @@ def deploy():
         sudo('git pull')
         run('workon tools && ./manage.py collectstatic --noinput')
         run('workon tools && ./manage.py migrate')
-        run('workon tools && gunicorn -w 2 -p 8080 -n toolsprj prj.wsgi:application &')
+        run('workon tools && gunicorn -w 2 -b 127.0.0.1:8080 -n toolsprj toolsprj.wsgi:application &')
+# gunicorn -w 2 -b 127.0.0.1:8080 -n toolsprj toolsprj.wsgi:application &
