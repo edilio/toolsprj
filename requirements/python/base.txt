@@ -4,3 +4,4 @@ django-dotenv==1.2
 Fabric==1.10.0
 django-robots==1.0
 Pillow==2.6.1
+gunicorn==18.0
