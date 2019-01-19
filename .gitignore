@@ -56,3 +56,4 @@ target/
 
 .env
 .idea/
+ toolsdb.sqlite
